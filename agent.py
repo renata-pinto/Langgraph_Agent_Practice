@@ -1,9 +1,4 @@
 
-
-# --- CONFIGURATION ---
-GROQ_API_KEY = "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"  # 👈 Paste your key here
-TAVILY_API_KEY = "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"
-
 import os
 import asyncio
 from typing import TypedDict, List
@@ -14,13 +9,16 @@ from langchain_groq import ChatGroq
 from langchain_tavily import TavilySearch
 from langchain_core.messages import HumanMessage, SystemMessage
 from langgraph.graph import StateGraph, START, END
+from dotenv import load_dotenv
 
-# --- CONFIGURATION ---
-GROQ_API_KEY = "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"  # 👈 Paste your key here
-TAVILY_API_KEY = "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"
+load_dotenv()
 
-os.environ["GROQ_API_KEY"] = GROQ_API_KEY
-os.environ["TAVILY_API_KEY"] = TAVILY_API_KEY
+# Access API keys
+tavily_api_key = os.getenv("TAVILY_API_KEY")
+groq_api_key = os.getenv("GROQ_API_KEY")
+
+print("Tavily Key:", tavily_api_key)
+print("Groq Key:", groq_api_key)
 
 # --- 2. STATE DEFINITION ---
 class AgentState(TypedDict):
